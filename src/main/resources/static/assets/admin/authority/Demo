@@ -1,0 +1,34 @@
+int(
+    if(
+        equals(variables('KE24'),null),
+        trim('0'),
+        replace(
+            if(
+                equals(variables('KE24'), trim('')),
+                trim('0'),
+                if(
+                    contains(variables('KE24'),'-'),
+                    concat(
+                        trim('-'),
+                        replace(
+                            if(
+                                equals(length(variables('KE24')),1),
+                                trim('0'),
+                                if(
+                                    contains(variables('KE24'),','),
+                                    substring(variables('KE24'),0,indexOf(variables('KE24'),',')),
+                                    variables('KE24')
+                                )
+                            ),trim('-'),trim('')
+                        )
+                    ),
+                    if(
+                        contains(variables('KE24'),','),
+                        substring(variables('KE24'),0,indexOf(variables('KE24'),',')),
+                        variables('KE24')
+                    )
+                )
+            ), trim('.'),trim('')
+        )
+    )
+)

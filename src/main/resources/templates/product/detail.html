@@ -1,0 +1,23 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org" th:replace="~{/layout/index :: dynamic(~{::main})}">
+ 
+    <body>
+        <main th:object="${item}" class="poly-item-detail">
+            <h1>PRODUCT DETAIL</h1>
+            <h3>[[${item.name}]]</h3>
+            <h5>[[${item.category.name}]]</h5>
+            <h1>[[${item.price}]]$</h1>
+            <a th:href="@{|/product/detail/${item.id}|}">
+                <img th:src="@{|/assets/images/${item.image}|}">
+            </a>
+            <h1>Cùng Loại</h1>
+            <ul>
+                <li th:each="p:${item.category.products}">
+                    <a th:href="@{|/product/detail/${p.id}|}">
+                        [[${p.name}]]
+                    </a>
+                </li>
+            </ul>
+        </main>
+    </body>
+</html>
